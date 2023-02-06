@@ -1,0 +1,91 @@
+## TR3D: Towards Real-Time Indoor 3D Object Detection
+
+This repository contains an implementation of TR3D, a 3D object detection method introduced in our paper:
+
+> **TR3D: Towards Real-Time Indoor 3D Object Detection**<br>
+> [Danila Rukhovich](https://github.com/filaPro),
+> [Anna Vorontsova](https://github.com/highrut),
+> [Anton Konushin](https://scholar.google.com/citations?user=ZT_k-wMAAAAJ)
+> <br>
+> Samsung AI Center Moscow <br>
+> https://arxiv.org/abs/2302.?????
+
+### Installation
+For convenience, we provide a [Dockerfile](docker/Dockerfile).
+
+Alternatively, you can install all required packages manually. This implementation is based on [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) framework.
+Please refer to the original installation guide [getting_started.md](docs/getting_started.md), including MinkowskiEngine installation, replacing `open-mmlab/mmdetection3d` with `samsunglabs/tr3d`.
+
+
+Most of the `TR3D`-related code locates in the following files: 
+[detectors/mink_single_stage.py](mmdet3d/models/detectors/mink_single_stage.py),
+[detectors/tr3d_ff.py](mmdet3d/models/detectors/tr3d_ff.py),
+[dense_heads/tr3d_head.py](mmdet3d/models/dense_heads/tr3d_head.py),
+[necks/tr3d_neck.py](mmdet3d/models/necks/tr3d_neck.py).
+
+### Getting Started
+
+Please see [getting_started.md](docs/getting_started.md) for basic usage examples.
+We follow the mmdetection3d data preparation protocol described in [scannet](data/scannet), [sunrgbd](data/sunrgbd), and [s3dis](data/s3dis).
+
+**Training**
+
+To start training, run [train](tools/train.py) with TR3D [configs](configs/tr3d):
+```shell
+python tools/train.py configs/tr3d/tr3d_scannet-3d-18class.py
+```
+
+**Testing**
+
+Test pre-trained model using [test](tools/dist_test.sh) with TR3D [configs](configs/tr3d):
+```shell
+python tools/test.py configs/tr3d/tr3d_scannet-3d-18class.py \
+    work_dirs/tr3d_scannet-3d-18class/latest.pth --eval mAP
+```
+
+**Visualization**
+
+Visualizations can be created with [test](tools/test.py) script. 
+For better visualizations, you may set `score_thr` in configs to `0.3`:
+```shell
+python tools/test.py configs/tr3d/tr3d_scannet-3d-18class.py \
+    work_dirs/tr3d_scannet-3d-18class/latest.pth --eval mAP --show \
+    --show-dir work_dirs/tr3d_scannet-3d-18class
+```
+
+### Models
+
+The metrics are obtained in 5 training runs followed by 5 test runs. We report both the best and the average values (the latter are given in round brackets).
+Inference speed (scenes per second) is measured on a single NVidia RTX 4090.
+
+**TR3D 3D Detection**
+
+| Dataset | mAP@0.25 | mAP@0.5 | Scenes <br> per sec.| Download |
+|:-------:|:--------:|:-------:|:-------------------:|:--------:|
+| ScanNet | 72.9 (72.0) | 58.8 (57.4) | 23.7 | [model](https://github.com/samsunglabs/tr3d/releases/download/v1.0/tr3d_scannet.pth) &#124; [log](https://github.com/samsunglabs/tr3d/releases/download/v1.0/tr3d_scannet.log.json) &#124; [config](configs/tr3d/tr3d_scannet-3d-18class.py) |
+| SUN RGB-D | 67.1 (66.3) | 49.9 (49.5) | 27.5 | [model](https://github.com/samsunglabs/tr3d/releases/download/v1.0/tr3d_sunrgbd.pth) &#124; [log](https://github.com/samsunglabs/tr3d/releases/download/v1.0/tr3d_sunrgbd.log.json) &#124; [config](configs/tr3d/tr3d_sunrgbd-3d-10class.py) |
+| S3DIS | 74.5 (72.1) | 50.6 (46.1) | 21.0 | [model](https://github.com/samsunglabs/tr3d/releases/download/v1.0/tr3d_s3dis.pth) &#124; [log](https://github.com/samsunglabs/tr3d/releases/download/v1.0/tr3d_s3dis.log.json) &#124; [config](configs/tr3d/tr3d_s3dis-3d-5class.py) |
+
+**RGB + PC 3D Detection on SUN RGB-D**
+
+| Model | mAP@0.25 | mAP@0.5 | Scenes <br> per sec.| Download |
+|:-----:|:--------:|:-------:|:-------------------:|:--------:|
+| ImVoteNet | 63.4 | - | 14.8 | [instruction](configs/imvotenet) |
+| VoteNet+FF | 64.5 (63.7) | 39.2 (38.1) | - | [model](https://github.com/samsunglabs/tr3d/releases/download/v1.0/votenet_ff_sunrgbd.pth) &#124; [log](https://github.com/samsunglabs/tr3d/releases/download/v1.0/votenet_ff_sunrgbd.log.json) &#124; [config](configs/votenet/votenet-ff_16x8_sunrgbd-3d-10class.py) |
+| TR3D+FF | 69.3 (68.7) | 52.9 (52.4) | 17.5 | [model](https://github.com/samsunglabs/tr3d/releases/download/v1.0/tr3d_ff_sunrgbd.pth) &#124; [log](https://github.com/samsunglabs/tr3d/releases/download/v1.0/tr3d_ff_sunrgbd.log.json) &#124; [config](configs/tr3d/tr3d-ff_sunrgbd-3d-10class.py) |
+
+### Example Detections
+
+<p align="center"><img src="./resources/github.png" alt="drawing" width="90%"/></p>
+
+### Citation
+
+If you find this work useful for your research, please cite our paper:
+```
+@inproceedings{rukhovich2023tr3d,
+  title={TR3D: Towards Real-Time Indoor 3D Object Detection},
+  author={Rukhovich, Danila and Vorontsova, Anna and Konushin, Anton},
+  journal={arXiv preprint arXiv:2302.?????},
+  year={2023}
+}
+```
