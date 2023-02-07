@@ -8,7 +8,7 @@ This repository contains an implementation of TR3D, a 3D object detection method
 > [Anton Konushin](https://scholar.google.com/citations?user=ZT_k-wMAAAAJ)
 > <br>
 > Samsung AI Center Moscow <br>
-> https://arxiv.org/abs/2302.?????
+> https://arxiv.org/abs/2302.02858
 
 ### Installation
 For convenience, we provide a [Dockerfile](docker/Dockerfile).
@@ -81,11 +81,14 @@ Inference speed (scenes per second) is measured on a single NVidia RTX 4090.
 ### Citation
 
 If you find this work useful for your research, please cite our paper:
+
 ```
-@inproceedings{rukhovich2023tr3d,
-  title={TR3D: Towards Real-Time Indoor 3D Object Detection},
-  author={Rukhovich, Danila and Vorontsova, Anna and Konushin, Anton},
-  journal={arXiv preprint arXiv:2302.?????},
-  year={2023}
+@misc{rukhovich2023tr3d,
+  doi = {10.48550/ARXIV.2302.02858},
+  url = {https://arxiv.org/abs/2302.02858},
+  author = {Rukhovich, Danila and Vorontsova, Anna and Konushin, Anton},
+  title = {TR3D: Towards Real-Time Indoor 3D Object Detection},
+  publisher = {arXiv},
+  year = {2023}
 }
 ```
