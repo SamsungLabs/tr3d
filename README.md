@@ -1,4 +1,11 @@
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tr3d-towards-real-time-indoor-3d-object/3d-object-detection-on-scannetv2)](https://paperswithcode.com/sota/3d-object-detection-on-scannetv2?p=tr3d-towards-real-time-indoor-3d-object)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tr3d-towards-real-time-indoor-3d-object/3d-object-detection-on-sun-rgbd-val)](https://paperswithcode.com/sota/3d-object-detection-on-sun-rgbd-val?p=tr3d-towards-real-time-indoor-3d-object)
+[![PWC](https://img.shields.io/endpoint.svg?url=https://paperswithcode.com/badge/tr3d-towards-real-time-indoor-3d-object/3d-object-detection-on-s3dis)](https://paperswithcode.com/sota/3d-object-detection-on-s3dis?p=tr3d-towards-real-time-indoor-3d-object)
+
 ## TR3D: Towards Real-Time Indoor 3D Object Detection
+
+**News**:
+ * :fire: February, 2023. TR3D is now state-of-the-art on [paperswithcode](https://paperswithcode.com/) on SUN RGB-D and S3DIS.
 
 This repository contains an implementation of TR3D, a 3D object detection method introduced in our paper:
 
