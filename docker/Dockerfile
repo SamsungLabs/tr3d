@@ -22,6 +22,5 @@ RUN pip install --no-cache-dir -e .
 # Install MinkowskiEngine
 RUN apt-get -y install libopenblas-dev
 RUN pip install -U git+https://github.com/NVIDIA/MinkowskiEngine@405b39cb7e68c2ec1b4ac8c4b4ca9fa6fcfcb2fc -v --no-deps \
-    --install-option="--blas_include_dirs=/opt/conda/include" \
     --install-option="--blas=openblas" \
     --install-option="--force_cuda"
