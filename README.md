@@ -5,7 +5,8 @@
 ## TR3D: Towards Real-Time Indoor 3D Object Detection
 
 **News**:
- * :fire: February, 2023. TR3D is now state-of-the-art on [paperswithcode](https://paperswithcode.com/) on SUN RGB-D and S3DIS.
+ * February, 2023. TR3D on all 3 datasets is now supported in [mmdetection3d](https://github.com/open-mmlab/mmdetection3d) as a [project](https://github.com/open-mmlab/mmdetection3d/tree/dev-1.x/projects/TR3D).
+ * :fire: February, 2023. TR3D is now state-of-the-art on [paperswithcode](https://paperswithcode.com) on SUN RGB-D and S3DIS.
 
 This repository contains an implementation of TR3D, a 3D object detection method introduced in our paper:
 
